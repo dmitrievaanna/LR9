@@ -1,5 +1,4 @@
 ﻿
-@model IEnumerable<LR9.Models.DataText>
 @{
     Layout = null;
 }
@@ -13,23 +12,32 @@
 
 <body>
     <input type="button" id="button1" value="Обновить">
-
     <div class="container">
         
         <div class="row">
             <div class="col-xs-12 col-md-8">
                 <table>
-                    <tr><th>Id</th><th>Первая ячейка</th><th>Вторая ячейка</th><th>Третья ячейка</th><th></th></tr>
-                    @foreach (var a in Model)
+                    <tr><th>Первая ячейка</th><th>Вторая ячейка</th><th>Третья ячейка</th></tr>
+                    @foreach (var a in LR9.Models.DataList.dataList)
                     {
-                        <tr><td>@a.Id</td><td>@a.firstBox</td><td>@a.secondBox</td><td>@a.thirdBox</td><td><a asp-action="Delete" asp-route-_id="@a.Id">Удалить запись</a></td></tr>
+                        <tr><td>@a.firstBox</td><td>@a.secondBox</td><td>@a.thirdBox</td></tr>
                     }
                 </table>
             </div>
         </div>
     </div>
-    <div><a asp-action="AddNew" >Добавить запись</a></div>
-    <div> </div>
     <br />
+   
+    @model LR9.Models.DataText
+    <form name="form1" method="post" action="/Home/Index">
+       <div> <input type="text" name="firstBox" size="50" maxlength="50" value="Введите текст">
+        <span asp-validation-for="firstBox"></span> </div>
+      <div> <input type="text" name="secondBox" size="50" maxlength="50" value="Введите текст">
+        <span asp-validation-for="secondBox"></span> </div>
+       <div> <input type="text" name="thirdBox" size="50" maxlength="50" value="Введите текст">
+        </div>
+       <div> <input type="submit" name="submit" value="Отправить"></div>
+    </form>
+
     </body>
 </html>
