@@ -7,6 +7,7 @@ namespace LR9.Models
 {
     public class DataText
     {
+        public int Id { get; set; }
         [Required]
         public string firstBox { get; set; }
         [Required]

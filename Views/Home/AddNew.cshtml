@@ -1,0 +1,21 @@
+﻿
+
+@model LR9.Models.DataText
+@{
+    Layout = null;
+}
+<form name="form1" method="post" action="/Home/AddNew">
+    <div>
+        <input type="text" name="firstBox" size="50" maxlength="50" value="Введите текст">
+        <span asp-validation-for="firstBox"></span>
+    </div>
+    <div>
+        <input type="text" name="secondBox" size="50" maxlength="50" value="Введите текст">
+        <span asp-validation-for="secondBox"></span>
+    </div>
+    <div>
+        <input type="text" name="thirdBox" size="50" maxlength="50" value="Введите текст">
+    </div>
+    <div> <input type="submit" name="submit" value="Отправить"></div>
+</form>
+

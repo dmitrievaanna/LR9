@@ -7,7 +7,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-
+using Microsoft.EntityFrameworkCore;
+using LR9.Models;
 namespace LR9
 {
     public class Startup
@@ -27,7 +28,8 @@ namespace LR9
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            // Add framework services.
+            string connection = Configuration.GetConnectionString("DefaultConnection");
+            services.AddDbContext<DataContext>(options => options.UseSqlServer(connection));
             services.AddMvc();
         }
 
@@ -47,7 +49,7 @@ namespace LR9
                 app.UseExceptionHandler("/Home/Error");
             }
 
-            app.UseStaticFiles();
+         
 
             app.UseMvc(routes =>
             {
@@ -55,6 +57,13 @@ namespace LR9
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(
+                    name: "default2",
+                    template: "{controller=Home}/{action=AddNew}/{id?}");
+            });
+          
             app.UseStaticFiles();
         }
     }
